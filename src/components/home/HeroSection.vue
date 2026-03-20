@@ -16,6 +16,8 @@ let cleanupTouchEnd = null
 onMounted(async () => {
   await nextTick()
 
+  if (window.innerWidth < 768) return
+
   if (heroText.value) {
     gsap.fromTo(
       heroText.value.children,
@@ -299,7 +301,7 @@ onBeforeUnmount(() => {
 
         <div
           ref="floatingCardTwo"
-          class="absolute bottom-4 right-2 z-20 hidden w-52 rounded-[1.5rem] border border-white/10 bg-black/55 p-4 backdrop-blur-xl lg:block xl:right-0"
+          class="absolute bottom-35 right-2 z-20 hidden w-52 rounded-[1.5rem] border border-white/10 bg-black/55 p-4 backdrop-blur-xl lg:block xl:right-0"
         >
           <p class="text-xs uppercase tracking-[0.22em] text-lime-400">Prenotazione</p>
           <p class="mt-2 text-base font-semibold text-white">Più semplice e veloce</p>
@@ -317,9 +319,15 @@ onBeforeUnmount(() => {
             class="overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 shadow-[0_20px_80px_rgba(0,0,0,0.45)]"
             style="transform: translateZ(0)"
           >
-            <div
-              class="relative min-h-[420px] bg-[url('/images/hero.jpg')] bg-cover bg-center sm:min-h-[480px] md:min-h-[540px] xl:min-h-[560px]"
-            >
+            <div class="relative min-h-[420px] sm:min-h-[480px] md:min-h-[540px] xl:min-h-[560px]">
+              <img
+                src="/images/hero.webp"
+                sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 560px"
+                alt="Centro sportivo SportCity Mantova"
+                fetchpriority="high"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover"
+              />
               <div
                 class="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent"
               ></div>
